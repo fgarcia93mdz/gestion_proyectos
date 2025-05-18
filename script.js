@@ -1,14 +1,42 @@
 const metodologias = [
-  { nombre: "Cascada", descripcion: "Secuencial y estructurada. Ideal para proyectos con etapas claras." },
-  { nombre: "Ágil", descripcion: "Iterativa y flexible. Se adapta al cambio constantemente." },
-  { nombre: "Scrum", descripcion: "Trabajo en sprints cortos, con roles y reuniones frecuentes." },
-  { nombre: "Kanban", descripcion: "Visual, con columnas como 'Por hacer', 'En progreso', 'Hecho'." },
-  { nombre: "Lean", descripcion: "Busca eliminar desperdicios y enfocarse en lo esencial." },
-  { nombre: "Seis Sigma", descripcion: "Mejora de procesos con foco en datos y reducción de errores." },
-  { nombre: "PRINCE2", descripcion: "Metodología formal con roles definidos y procesos estructurados." },
-  { nombre: "Camino Crítico", descripcion: "Se enfoca en las tareas clave para cumplir plazos." },
-  { nombre: "PERT", descripcion: "Estimaciones de tiempos en entornos inciertos o de innovación." }
+  {
+    nombre: "Cascada",
+    descripcion: "Modelo secuencial donde cada fase (análisis, diseño, desarrollo, prueba, entrega) se completa completamente antes de pasar a la siguiente. Ideal para proyectos predecibles y con requerimientos fijos, como obras de ingeniería o implementación de hardware."
+  },
+  {
+    nombre: "Ágil",
+    descripcion: "Enfoque iterativo que prioriza la entrega continua de valor, la adaptación al cambio y la colaboración constante. Usado en desarrollo de software, marketing y proyectos creativos donde los requerimientos evolucionan."
+  },
+  {
+    nombre: "Scrum",
+    descripcion: "Marco de trabajo ágil que organiza el trabajo en sprints (ciclos de 1 a 4 semanas), con roles como Scrum Master, Product Owner y reuniones diarias (dailies). Favorece entregas frecuentes, priorización y mejora continua."
+  },
+  {
+    nombre: "Kanban",
+    descripcion: "Sistema visual de gestión de tareas que utiliza tableros con columnas ('Por hacer', 'En progreso', 'Hecho'). Es útil para flujos de trabajo continuos como soporte técnico, atención al cliente o mantenimiento."
+  },
+  {
+    nombre: "Lean",
+    descripcion: "Busca maximizar el valor entregado al cliente eliminando todo lo que no aporta valor ('desperdicio'). Promueve la mejora continua, procesos eficientes y cultura de optimización. Originado en Toyota."
+  },
+  {
+    nombre: "Seis Sigma",
+    descripcion: "Metodología basada en datos y estadística para reducir errores y variabilidad en los procesos. Utiliza roles como 'Green Belt' y 'Black Belt' y herramientas como DMAIC (Definir, Medir, Analizar, Mejorar, Controlar)."
+  },
+  {
+    nombre: "PRINCE2",
+    descripcion: "Metodología de gestión por procesos muy estructurada, con roles bien definidos y documentación detallada. Muy usada en gobiernos y grandes corporaciones, especialmente en Europa."
+  },
+  {
+    nombre: "Camino Crítico",
+    descripcion: "Técnica de planificación que identifica las tareas esenciales que no pueden retrasarse sin afectar la fecha final del proyecto. Se usa en proyectos donde los plazos son fijos y estrictos (ej. construcción, ingeniería)."
+  },
+  {
+    nombre: "PERT",
+    descripcion: "Herramienta para estimar tiempos en proyectos con alta incertidumbre. Usa estimaciones optimistas, más probables y pesimistas para cada tarea. Ideal en investigación, innovación y desarrollo tecnológico."
+  }
 ];
+
 
 const contenedor = document.getElementById("metodologias");
 const popup = document.getElementById("popup");
