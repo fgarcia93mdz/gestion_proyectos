@@ -4,68 +4,45 @@ body {
   background: #f2f2f2;
 }
 
-.fondo {
-  background-image: url("IMG_9944.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
+.contenedor {
   position: relative;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(255,255,255,0.9);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-}
-
-h1 {
-  text-align: center;
-  color: #00467f;
-  margin-bottom: 1rem;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1rem;
   width: 100%;
-  max-width: 900px;
+  max-width: 1000px;
+  margin: auto;
 }
 
-.card {
-  background: #ffffff;
-  border-radius: 10px;
-  border: 2px solid #e0e0e0;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+.imagen-fondo {
+  width: 100%;
+  display: block;
+}
+
+.selector {
+  position: absolute;
+  width: 22%;
+  height: 15%;
+  background: rgba(0, 120, 212, 0.15);
+  border: 2px solid #0078D4;
+  border-radius: 8px;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 
-.card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+.selector:hover {
+  background: rgba(0, 120, 212, 0.3);
 }
 
-.card.selected {
-  border-color: #0078D4;
-  background-color: #e5f1fb;
-  font-weight: bold;
+.selector.selected {
+  background: rgba(0, 120, 212, 0.6);
+  border: 2px solid #005a9e;
 }
 
 .formulario {
-  padding: 2rem;
   max-width: 800px;
-  margin: auto;
+  margin: 2rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 form input, form textarea {
@@ -73,8 +50,8 @@ form input, form textarea {
   width: 100%;
   margin-bottom: 1rem;
   padding: 0.75rem;
-  border-radius: 6px;
   border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 form button {
@@ -82,7 +59,7 @@ form button {
   color: white;
   padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
 }
