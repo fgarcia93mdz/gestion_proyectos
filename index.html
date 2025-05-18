@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Selector de Gestión de Proyectos</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -24,35 +24,20 @@
     <div class="selector" data-nombre="PERT" style="top: 67%; left: 66%;" data-desc="Representación gráfica de tareas y tiempos."></div>
   </div>
 
-
-  <main>
-    <section class="grid-container" id="metodologias"></section>
-
-    <section class="formulario">
-      <h2>Información del área</h2>
-      <form id="formularioEvaluacion">
-        <input type="text" id="nombre" name="nombre" placeholder="Nombre y apellido" required />
-        <input type="text" id="area" name="area" placeholder="Área o sector" required />
-
-        <textarea name="organizacion_tareas" maxlength="255" placeholder="¿Cómo organizan sus tareas y proyectos?" required></textarea>
-        <textarea name="herramientas_utilizadas" maxlength="255" placeholder="¿Qué herramientas usan?" required></textarea>
-        <textarea name="seguimiento_proyectos" maxlength="255" placeholder="¿Cómo saben si un proyecto va bien o mal?" required></textarea>
-        <textarea name="asignacion_tareas" maxlength="255" placeholder="¿Cómo se asignan las tareas al equipo?" required></textarea>
-        <textarea name="aspectos_mejorar" maxlength="255" placeholder="¿Qué les gustaría mejorar?" required></textarea>
-        <textarea name="tareas_repetitivas" maxlength="255" placeholder="¿Tienen tareas repetitivas o problemas recurrentes?" required></textarea>
-
-        <button type="submit">Enviar</button>
-      </form>
-    </section>
-  </main>
-
-  <div id="popup" class="popup">
-    <div class="popup-content">
-      <span class="close">&times;</span>
-      <h3 id="popup-title"></h3>
-      <p id="popup-description"></p>
-    </div>
-  </div>
+  <section id="formulario" class="formulario" style="display: none;">
+    <h2>Formulario de diagnóstico</h2>
+    <form id="formularioEvaluacion">
+      <input type="text" name="nombre" placeholder="Nombre y apellido" required />
+      <input type="text" name="area" placeholder="Área o sector" required />
+      <textarea name="organizacion_tareas" maxlength="255" placeholder="¿Cómo organizan sus tareas y proyectos?" required></textarea>
+      <textarea name="herramientas_utilizadas" maxlength="255" placeholder="¿Qué herramientas usan?" required></textarea>
+      <textarea name="seguimiento_proyectos" maxlength="255" placeholder="¿Cómo saben si un proyecto va bien o mal?" required></textarea>
+      <textarea name="asignacion_tareas" maxlength="255" placeholder="¿Cómo se asignan las tareas al equipo?" required></textarea>
+      <textarea name="aspectos_mejorar" maxlength="255" placeholder="¿Qué les gustaría mejorar?" required></textarea>
+      <textarea name="tareas_repetitivas" maxlength="255" placeholder="¿Tienen tareas repetitivas o problemas recurrentes?" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
 
   <script src="script.js"></script>
 </body>
