@@ -1,14 +1,54 @@
 const descripciones = {
-  "Cascada": "Modelo secuencial donde cada fase (análisis, diseño, desarrollo, prueba, entrega) se completa completamente antes de pasar a la siguiente. Ideal para proyectos predecibles y con requerimientos fijos, como obras de ingeniería o implementación de hardware.",
-  "Ágil": "Enfoque iterativo que prioriza la entrega continua de valor, la adaptación al cambio y la colaboración constante. Usado en desarrollo de software, marketing y proyectos creativos donde los requerimientos evolucionan.",
-  "Scrum": "Marco de trabajo ágil que organiza el trabajo en sprints (ciclos de 1 a 4 semanas), con roles como Scrum Master, Product Owner y reuniones diarias (dailies). Favorece entregas frecuentes, priorización y mejora continua.",
-  "Kanban": "Sistema visual de gestión de tareas que utiliza tableros con columnas ('Por hacer', 'En progreso', 'Hecho'). Es útil para flujos de trabajo continuos como soporte técnico, atención al cliente o mantenimiento.",
-  "Lean": "Busca maximizar el valor entregado al cliente eliminando todo lo que no aporta valor ('desperdicio'). Promueve la mejora continua, procesos eficientes y cultura de optimización. Originado en Toyota.",
-  "Seis Sigma": "Metodología basada en datos y estadística para reducir errores y variabilidad en los procesos. Utiliza roles como 'Green Belt' y 'Black Belt' y herramientas como DMAIC (Definir, Medir, Analizar, Mejorar, Controlar).",
-  "PRINCE2": "Metodología de gestión por procesos muy estructurada, con roles bien definidos y documentación detallada. Muy usada en gobiernos y grandes corporaciones, especialmente en Europa.",
-  "Camino Crítico": "Técnica de planificación que identifica las tareas esenciales que no pueden retrasarse sin afectar la fecha final del proyecto. Se usa en proyectos donde los plazos son fijos y estrictos (ej. construcción, ingeniería).",
-  "PERT": "Herramienta para estimar tiempos en proyectos con alta incertidumbre. Usa estimaciones optimistas, más probables y pesimistas para cada tarea. Ideal en investigación, innovación y desarrollo tecnológico."
+  "Cascada": `Modelo secuencial tradicional. Cada fase del proyecto (análisis, diseño, desarrollo, pruebas, entrega) se realiza por completo antes de pasar a la siguiente. 
+Ideal para proyectos con requerimientos estables, cronogramas claros y bajo nivel de cambios.
+✔️ Ventajas: previsibilidad, documentación completa, control de alcance.
+🔧 Usos: construcción, ingeniería, implementación de ERP, hardware.
+🏢 Común en: empresas industriales, constructoras, organismos públicos.`,
+
+  "Ágil": `Filosofía y conjunto de prácticas que promueven ciclos iterativos cortos, colaboración con el cliente y adaptación al cambio constante.
+✔️ Ventajas: flexibilidad, entregas frecuentes, foco en valor.
+🔧 Usos: desarrollo de software, marketing, diseño de producto.
+🏢 Común en: startups, empresas digitales, agencias creativas.`,
+
+  "Scrum": `Marco de trabajo ágil que organiza el trabajo en Sprints (de 1 a 4 semanas). Utiliza roles definidos como Scrum Master, Product Owner y el equipo de desarrollo.
+✔️ Ventajas: visibilidad diaria, mejora continua, foco en objetivos concretos.
+🔧 Usos: proyectos de software, diseño de productos, apps.
+🏢 Común en: áreas de desarrollo, innovación, consultoras de tecnología.`,
+
+  "Kanban": `Sistema visual para gestionar el flujo de trabajo con tableros divididos en columnas como "Por hacer", "En curso", "Hecho".
+✔️ Ventajas: gestión de carga de trabajo, mejora en tiempos de entrega, visibilidad clara.
+🔧 Usos: soporte técnico, mantenimiento, procesos administrativos.
+🏢 Común en: help desks, industrias, pymes operativas.`,
+
+  "Lean": `Filosofía de mejora continua enfocada en eliminar desperdicios y maximizar el valor entregado al cliente.
+✔️ Ventajas: eficiencia operativa, cultura de optimización, reducción de tiempos muertos.
+🔧 Usos: manufactura, logística, procesos repetitivos.
+🏢 Común en: empresas manufactureras, logística, operaciones.`,
+
+  "Seis Sigma": `Metodología rigurosa basada en datos para mejorar la calidad y reducir la variabilidad de procesos.
+Utiliza el ciclo DMAIC y niveles de certificación como Green Belt y Black Belt.
+✔️ Ventajas: mejora de calidad, decisiones basadas en datos.
+🔧 Usos: control de calidad, procesos industriales, auditorías.
+🏢 Común en: industrias, empresas ISO, grandes corporaciones.`,
+
+  "PRINCE2": `Metodología estructurada de gestión de proyectos basada en procesos, orientada a control total de tiempo, costos, riesgos y calidad.
+✔️ Ventajas: roles claros, gobernanza, documentación sólida.
+🔧 Usos: proyectos complejos, públicos, regulatorios.
+🏢 Común en: gobiernos, grandes empresas, consultoras internacionales.`,
+
+  "Camino Crítico": `Herramienta para identificar tareas que determinan la duración total de un proyecto.
+El retraso de una de estas tareas retrasa todo el proyecto.
+✔️ Ventajas: control preciso del cronograma, identificación de riesgos de tiempo.
+🔧 Usos: planificación de obras, implementación de sistemas, ingeniería.
+🏢 Común en: obras civiles, arquitectura, ingeniería.`,
+
+  "PERT": `Técnica de análisis probabilístico para estimar tiempos en proyectos con incertidumbre.
+Utiliza 3 estimaciones (optimista, probable, pesimista) por tarea.
+✔️ Ventajas: análisis de riesgo de tiempo, planificación más realista.
+🔧 Usos: I+D, innovación, proyectos tecnológicos.
+🏢 Común en: empresas de innovación, laboratorios, proyectos exploratorios.`
 };
+
 
 const seleccionadas = [];
 const maxSeleccion = 3;
@@ -20,17 +60,25 @@ const closeBtn = document.querySelector(".close");
 
 const formulario = document.getElementById("formulario");
 const selectores = document.querySelectorAll(".selector");
+const btnContinuar = document.getElementById("btnContinuar");
 
-// Agregar evento a cada recuadro ya existente en el HTML
 selectores.forEach(selector => {
-  selector.addEventListener("click", () => {
-    const nombre = selector.dataset.nombre;
+  const nombre = selector.dataset.nombre;
+  const btnInfo = selector.querySelector(".info");
+  const btnSelect = selector.querySelector(".seleccionar");
+
+  btnInfo.addEventListener("click", (e) => {
+    e.stopPropagation();
+    mostrarPopup(nombre);
+  });
+
+  btnSelect.addEventListener("click", (e) => {
+    e.stopPropagation();
 
     if (!selector.classList.contains("selected")) {
       if (seleccionadas.length < maxSeleccion) {
         selector.classList.add("selected");
         seleccionadas.push(nombre);
-        mostrarPopup(nombre);
       }
     } else {
       selector.classList.remove("selected");
@@ -38,13 +86,20 @@ selectores.forEach(selector => {
       if (index !== -1) seleccionadas.splice(index, 1);
     }
 
-    formulario.style.display = seleccionadas.length > 0 ? "block" : "none";
+    btnContinuar.disabled = seleccionadas.length === 0;
+    btnContinuar.classList.toggle("enabled", seleccionadas.length > 0);
   });
 });
 
+btnContinuar.addEventListener("click", () => {
+  document.querySelector(".contenedor").style.display = "none";
+  formulario.style.display = "block";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
 function mostrarPopup(nombre) {
-  popupTitle.textContent = nombre;
-  popupDescription.textContent = descripciones[nombre];
+  popupTitle.innerText = nombre;
+  popupDescription.innerText = descripciones[nombre];
   popup.style.display = "flex";
 }
 
@@ -56,7 +111,7 @@ window.onclick = (e) => {
   if (e.target === popup) popup.style.display = "none";
 };
 
-document.getElementById("formularioEvaluacion").addEventListener("submit", function(e) {
+document.getElementById("formularioEvaluacion").addEventListener("submit", function (e) {
   e.preventDefault();
 
   const data = {
@@ -76,18 +131,11 @@ document.getElementById("formularioEvaluacion").addEventListener("submit", funct
   console.log("Formulario enviado:", JSON.stringify(data));
   alert("Formulario enviado correctamente. Gracias por tu participación.");
 
-  // Reset
   this.reset();
   seleccionadas.length = 0;
   selectores.forEach(el => el.classList.remove("selected"));
   formulario.style.display = "none";
-
-  // POST opcional a Power Automate
-  /*
-  fetch("https://your-flow-url", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
-  });
-  */
+  document.querySelector(".contenedor").style.display = "block";
+  btnContinuar.disabled = true;
+  btnContinuar.classList.remove("enabled");
 });

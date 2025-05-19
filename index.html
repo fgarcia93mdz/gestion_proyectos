@@ -1,27 +1,85 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Selector de Gestión de Proyectos</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico de Gestión de Proyectos</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="contenedor">
-    <img src="IMG_9944.jpg" alt="Tipos de Gestión de Proyectos" class="imagen-fondo">
+    <header class="header">
+      <div class="header-content">
+        <img src="logo_maxiseguridad.jpeg" alt="Maxiseguridad Industrial" class="logo" />
+        <div class="header-texto">
+          <h1>¿Cómo gestiona tu equipo los proyectos?</h1>
+          <p>
+            Seleccioná al menos <strong>una</strong> y hasta <strong>tres metodologías</strong> que creés que se utilizan en
+            tu área.
+            Luego podrás avanzar y completar el formulario de diagnóstico.
+          </p>
+        </div>
+      </div>
+    </header>
+    
 
-    <!-- Recuadros interactivos posicionados -->
-    <div class="selector" data-nombre="Cascada" style="top: 18%; left: 10%;" data-desc="Enfoque lineal con fases bien definidas."></div>
-    <div class="selector" data-nombre="Ágil" style="top: 18%; left: 38%;" data-desc="Iterativo, enfocado en la flexibilidad y colaboración."></div>
-    <div class="selector" data-nombre="Scrum" style="top: 18%; left: 66%;" data-desc="Marco ágil con sprints y entregas incrementales."></div>
+  <div class="intro">
+    <div class="imagen-wrapper">
+      <img src="IMG_9944.jpg" alt="Infografía metodologías" class="imagen-fondo" />
+      <div class="overlay-selectores">
+        <div class="selector" style="top: 40%; left: 28%;" data-nombre="Cascada">
+          <!-- <span>Cascada</span> -->
+          <button class="info">Info</button>
+          <button class="seleccionar">✔️ Elegir</button>
+        </div>
+        <div class="selector" style="top: 40%; left: 50%;" data-nombre="Ágil">
+          <!-- <span>Ágil</span> -->
+          <button class="info">Info</button>
+          <button class="seleccionar">✔️ Elegir</button>
+        </div>
+        <div class="selector" style="top: 40%; left: 72%;" data-nombre="Scrum">
+         <!-- <span>Scrum</span> -->
+          <button class="info">Info</button>
+          <button class="seleccionar">✔️ Elegir</button>
+        </div>
+        <div class="selector" style="top: 67%; left: 28%;" data-nombre="Kanban">
+          <!-- <span>Kanban</span> -->
+          <button class="info">Info</button>
+          <button class="seleccionar">✔️ Elegir</button>
+        </div>
+        <div class="selector" style="top: 67%; left: 50%;" data-nombre="Lean">
+          <!-- <span>Lean</span> -->
+          <button class="info">Info</button>
+          <button class="seleccionar">✔️ Elegir</button>
+        </div>
+        <div class="selector" style="top: 67%; left: 72%;" data-nombre="Seis Sigma">
+          <!-- <span>Seis Sigma</span> -->
+          <button class="info">Info</button>
+          <button class="seleccionar">✔️ Elegir</button>
+        </div>
+        <div class="selector" style="top: 94%; left: 28%;" data-nombre="PRINCE2">
+         <!-- <span>PRINCE2</span> -->
+          <button class="info">Info</button>
+          <button class="seleccionar">✔️ Elegir</button>
+        </div>
+        <div class="selector" style="top: 94%; left: 50%;" data-nombre="Camino Crítico">
+          <!-- <span>Camino Crítico</span> -->
+          <button class="info">Info</button>
+          <button class="seleccionar">✔️ Elegir</button>
+        </div>
+        <div class="selector" style="top: 94%; left: 72%;" data-nombre="PERT">
+          <!-- <span>PERT</span> -->
+          <button class="info">Info</button>
+          <button class="seleccionar">✔️ Elegir</button>
+        </div>
+      </div>
+    </div>
 
-    <div class="selector" data-nombre="Kanban" style="top: 42%; left: 10%;" data-desc="Visual, con tableros para gestionar tareas."></div>
-    <div class="selector" data-nombre="Lean" style="top: 42%; left: 38%;" data-desc="Maximiza valor, minimiza desperdicio."></div>
-    <div class="selector" data-nombre="Seis Sigma" style="top: 42%; left: 66%;" data-desc="Basado en datos para mejora y control de calidad."></div>
-
-    <div class="selector" data-nombre="PRINCE2" style="top: 67%; left: 10%;" data-desc="Procesos con roles definidos y etapas claras."></div>
-    <div class="selector" data-nombre="Camino Crítico" style="top: 67%; left: 38%;" data-desc="Técnica basada en dependencias clave."></div>
-    <div class="selector" data-nombre="PERT" style="top: 67%; left: 66%;" data-desc="Representación gráfica de tareas y tiempos."></div>
+    <div class="continuar">
+      <button id="btnContinuar" disabled>Continuar al formulario</button>
+    </div>
   </div>
 
   <section id="formulario" class="formulario" style="display: none;">
@@ -29,16 +87,30 @@
     <form id="formularioEvaluacion">
       <input type="text" name="nombre" placeholder="Nombre y apellido" required />
       <input type="text" name="area" placeholder="Área o sector" required />
-      <textarea name="organizacion_tareas" maxlength="255" placeholder="¿Cómo organizan sus tareas y proyectos?" required></textarea>
-      <textarea name="herramientas_utilizadas" maxlength="255" placeholder="¿Qué herramientas usan?" required></textarea>
-      <textarea name="seguimiento_proyectos" maxlength="255" placeholder="¿Cómo saben si un proyecto va bien o mal?" required></textarea>
-      <textarea name="asignacion_tareas" maxlength="255" placeholder="¿Cómo se asignan las tareas al equipo?" required></textarea>
+      <textarea name="organizacion_tareas" maxlength="255" placeholder="¿Cómo organizan sus tareas y proyectos?"
+        required></textarea>
+      <textarea name="herramientas_utilizadas" maxlength="255" placeholder="¿Qué herramientas usan?"
+        required></textarea>
+      <textarea name="seguimiento_proyectos" maxlength="255" placeholder="¿Cómo saben si un proyecto va bien o mal?"
+        required></textarea>
+      <textarea name="asignacion_tareas" maxlength="255" placeholder="¿Cómo se asignan las tareas al equipo?"
+        required></textarea>
       <textarea name="aspectos_mejorar" maxlength="255" placeholder="¿Qué les gustaría mejorar?" required></textarea>
-      <textarea name="tareas_repetitivas" maxlength="255" placeholder="¿Tienen tareas repetitivas o problemas recurrentes?" required></textarea>
+      <textarea name="tareas_repetitivas" maxlength="255"
+        placeholder="¿Tienen tareas repetitivas o problemas recurrentes?" required></textarea>
       <button type="submit">Enviar</button>
     </form>
   </section>
 
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <h3 id="popup-title"></h3>
+      <p id="popup-description"></p>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
+
 </html>
