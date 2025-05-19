@@ -93,7 +93,7 @@ selectores.forEach(selector => {
     btnContinuar.disabled = seleccionadas.length === 0;
     btnContinuar.classList.toggle("enabled", seleccionadas.length > 0);
   });
-  
+
 });
 
 btnContinuar.addEventListener("click", () => {
@@ -119,6 +119,11 @@ window.onclick = (e) => {
 document.getElementById("formularioEvaluacion").addEventListener("submit", function (e) {
   e.preventDefault();
 
+  // Desactivar el botón de enviar
+  const btnEnviar = this.querySelector('button[type="submit"]');
+  btnEnviar.disabled = true;
+
+  // Captura de datos
   const data = {
     selecciones: seleccionadas,
     nombre: this.nombre.value,
@@ -133,14 +138,80 @@ document.getElementById("formularioEvaluacion").addEventListener("submit", funct
     }
   };
 
-  console.log("Formulario enviado:", JSON.stringify(data));
-  alert("Formulario enviado correctamente. Gracias por tu participación.");
+  // Generar fecha actual
+  const fechaHora = new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString();
 
+  // Armar el payload que espera Power Automate
+  const payload = {
+    Nombre: data.nombre,
+    Area: data.area,
+    Metodo1: data.selecciones[0] || "Sin seleccionar",
+    Metodo2: data.selecciones[1] || "Sin seleccionar",
+    Metodo3: data.selecciones[2] || "Sin seleccionar",
+    OrganizacionTareas: data.respuestas.organizacion_tareas,
+    HerramientasUtilizadas: data.respuestas.herramientas_utilizadas,
+    SeguimientoProyectos: data.respuestas.seguimiento_proyectos,
+    AsignacionTareas: data.respuestas.asignacion_tareas,
+    AspectosMejorar: data.respuestas.aspectos_mejorar,
+    TareasRepetitivas: data.respuestas.tareas_repetitivas,
+    FechaHora: fechaHora
+  };
+
+  // Mostrar en consola el JSON enviado
+  console.log("Payload enviado:", JSON.stringify(payload, null, 2));
+
+  fetch("https://prod-155.westus.logic.azure.com:443/workflows/3f07c1556c894fca9ad65d30e3f97880/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=CGyB-Zg7ZuQ4wgA-xcyf-zHsSvWq121bXRke9UFF-R4", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  })
+    .then(response => {
+      if (response.ok) {
+        // Ocultar formulario y mostrar pantalla de agradecimiento
+        formulario.style.display = "none";
+        document.getElementById("gracias").style.display = "block";
+
+        // Esperar 5 segundos y volver al inicio reseteado
+        setTimeout(() => {
+          // Ocultar pantalla de gracias
+          document.getElementById("gracias").style.display = "none";
+
+          // Mostrar sección de introducción (imagen con los botones)
+          document.querySelector(".intro").style.display = "block";
+
+          // Ocultar el formulario otra vez por si quedó visible
+          formulario.style.display = "none";
+
+          // Mostrar contenedor principal
+          document.querySelector(".contenedor").style.display = "block";
+
+          // Reset visual
+          btnContinuar.disabled = true;
+          btnContinuar.classList.remove("enabled");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 5000);
+      } else {
+        alert("Error al enviar el formulario.");
+        console.error("Error de respuesta:", response);
+        btnEnviar.disabled = false;
+      }
+    })
+    .catch(error => {
+      console.error("Error en la solicitud:", error);
+      btnEnviar.disabled = false;
+    });
+
+  // Resetear campos, selección y clases
   this.reset();
   seleccionadas.length = 0;
-  selectores.forEach(el => el.classList.remove("selected"));
-  formulario.style.display = "none";
-  document.querySelector(".contenedor").style.display = "block";
-  btnContinuar.disabled = true;
-  btnContinuar.classList.remove("enabled");
+  selectores.forEach(el => {
+    el.classList.remove("selected");
+
+    const btnSelect = el.querySelector(".seleccionar");
+    btnSelect.innerText = "✔️ Elegir";
+    btnSelect.classList.remove("elegido");
+  });
+  
 });

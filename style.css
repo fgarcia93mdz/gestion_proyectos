@@ -253,6 +253,55 @@ form button {
     transform: translateY(0);
   }
 }
+.mensaje {
+  text-align: center;
+  padding: 3rem 2rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.mensaje-exito {
+  background-color: #e6f8ed;
+  color: #2e7d32;
+  border: 2px solid #a5d6a7;
+}
+
+.mensaje-error {
+  background-color: #fdecea;
+  color: #c62828;
+  border: 2px solid #ef9a9a;
+}
+
+.mensaje h2 {
+  font-size: 1.8rem;
+  margin-top: 1rem;
+}
+
+.mensaje p {
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.icono {
+  font-size: 3rem;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Centra el botón dentro del formulario */
+#formularioEvaluacion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
