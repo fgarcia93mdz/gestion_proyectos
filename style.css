@@ -125,6 +125,13 @@ html {
   color: white;
 }
 
+.selector .seleccionar.elegido {
+  background-color: #28a745;
+  /* verde éxito */
+  color: white;
+  font-weight: bold;
+}
+
 .continuar {
   text-align: center;
   margin-top: 2rem;

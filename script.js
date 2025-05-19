@@ -79,20 +79,25 @@ selectores.forEach(selector => {
       if (seleccionadas.length < maxSeleccion) {
         selector.classList.add("selected");
         seleccionadas.push(nombre);
+        btnSelect.innerText = "✅";
+        btnSelect.classList.add("elegido");
       }
     } else {
       selector.classList.remove("selected");
       const index = seleccionadas.indexOf(nombre);
       if (index !== -1) seleccionadas.splice(index, 1);
+      btnSelect.innerText = "✔️ Elegir";
+      btnSelect.classList.remove("elegido");
     }
 
     btnContinuar.disabled = seleccionadas.length === 0;
     btnContinuar.classList.toggle("enabled", seleccionadas.length > 0);
   });
+  
 });
 
 btnContinuar.addEventListener("click", () => {
-  document.querySelector(".contenedor").style.display = "none";
+  document.querySelector(".intro").style.display = "none";
   formulario.style.display = "block";
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
