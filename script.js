@@ -119,11 +119,9 @@ window.onclick = (e) => {
 document.getElementById("formularioEvaluacion").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  // Desactivar el botón de enviar
   const btnEnviar = this.querySelector('button[type="submit"]');
   btnEnviar.disabled = true;
 
-  // Captura de datos
   const data = {
     selecciones: seleccionadas,
     nombre: this.nombre.value,
@@ -138,10 +136,9 @@ document.getElementById("formularioEvaluacion").addEventListener("submit", funct
     }
   };
 
-  // Generar fecha actual
+
   const fechaHora = new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString();
 
-  // Armar el payload que espera Power Automate
   const payload = {
     Nombre: data.nombre,
     Area: data.area,
@@ -157,7 +154,6 @@ document.getElementById("formularioEvaluacion").addEventListener("submit", funct
     FechaHora: fechaHora
   };
 
-  // Mostrar en consola el JSON enviado
   console.log("Payload enviado:", JSON.stringify(payload, null, 2));
 
   fetch("https://prod-155.westus.logic.azure.com:443/workflows/3f07c1556c894fca9ad65d30e3f97880/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=CGyB-Zg7ZuQ4wgA-xcyf-zHsSvWq121bXRke9UFF-R4", {
@@ -169,25 +165,21 @@ document.getElementById("formularioEvaluacion").addEventListener("submit", funct
   })
     .then(response => {
       if (response.ok) {
-        // Ocultar formulario y mostrar pantalla de agradecimiento
+
         formulario.style.display = "none";
         document.getElementById("gracias").style.display = "block";
 
-        // Esperar 5 segundos y volver al inicio reseteado
         setTimeout(() => {
-          // Ocultar pantalla de gracias
           document.getElementById("gracias").style.display = "none";
 
-          // Mostrar sección de introducción (imagen con los botones)
           document.querySelector(".intro").style.display = "block";
 
-          // Ocultar el formulario otra vez por si quedó visible
+
           formulario.style.display = "none";
 
-          // Mostrar contenedor principal
+
           document.querySelector(".contenedor").style.display = "block";
 
-          // Reset visual
           btnContinuar.disabled = true;
           btnContinuar.classList.remove("enabled");
           window.scrollTo({ top: 0, behavior: "smooth" });
@@ -203,7 +195,6 @@ document.getElementById("formularioEvaluacion").addEventListener("submit", funct
       btnEnviar.disabled = false;
     });
 
-  // Resetear campos, selección y clases
   this.reset();
   seleccionadas.length = 0;
   selectores.forEach(el => {
@@ -213,5 +204,5 @@ document.getElementById("formularioEvaluacion").addEventListener("submit", funct
     btnSelect.innerText = "✔️ Elegir";
     btnSelect.classList.remove("elegido");
   });
-  
+
 });
